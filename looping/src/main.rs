@@ -4,13 +4,13 @@ const RIDDLE : &str =  "I am the beginning of the end, and the end of time and s
 const ANSWER : &str = "The letter e";
 
 
-fn main() -> io::Result<()> {
+fn main() {
     let mut i = 0;
 
     loop {
         let mut input = String::new();
         println!("{}",RIDDLE );
-        io::stdin().read_line(&mut input).expect("failed!");
+        io::stdin().read_line(&mut input).expect("Failed to read the line");
         i+=1;
         if input.trim()== ANSWER {
             println!("Number of trials: {}", i);
@@ -19,5 +19,5 @@ fn main() -> io::Result<()> {
         
     }
 
-    Ok(())
+    // Ok(())
 }
