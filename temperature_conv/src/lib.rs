@@ -1,5 +1,5 @@
 pub fn fahrenheit_to_celsius(f: f64) -> f64 {
-    return ((f-32 as f64)*5 as f64/9 as f64);
+    return (f-32 as f64)*1 as f64 /(9 as f64 /5 as f64)
 
 }
 
