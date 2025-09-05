@@ -5,8 +5,9 @@ pub fn to_url(s: &str) -> String {
   for ele in s.chars() {
      if ele == ' ' {
         result.push_str("%20");
+     } else {
+        result.push(ele);
      }
-    result.push(ele);
   }
   result
 }
