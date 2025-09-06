@@ -9,7 +9,7 @@ pub enum Suit {
 }
 
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum Rank {
     Ace,
     King,
@@ -57,7 +57,7 @@ impl Rank {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug,PartialEq)]
 pub struct Card {
     pub suit: Suit,
     pub rank: Rank,
@@ -65,5 +65,5 @@ pub struct Card {
 }
 
 pub fn winner_card(card: &Card) -> bool {
-    card.suit == Suit::Spade
+    card.suit == Suit::Spade && card.rank == Rank::Ace
 }
