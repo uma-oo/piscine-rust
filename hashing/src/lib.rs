@@ -12,7 +12,7 @@ pub fn median(list: &[i32]) -> i32 {
     let mut res = list.to_vec();
     res.sort();
     if res.len()%2 ==0 {
-     return (res[res.len()/2]+res[res.len()-1])/2;
+     return (res[res.len()/2]+res[res.len()/2-1])/2;
     }
 
     res[res.len()/2]
@@ -25,8 +25,17 @@ pub fn mode(list: &[i32]) -> i32 {
       *count +=1;
     }
 
-    
-    let dict_values  = Vec::from_iter(number_dict.values());
-    **dict_values.iter().max().unwrap()
+
+    let vect  = Vec::from_iter(number_dict.values());
+    let res = **vect.iter().max().unwrap();
+    let mut mode : &i32= &0;
+    for (key, &value) in &number_dict {
+        if value == res {
+            mode = &key;
+            break;
+        }
+    }
+
+   *mode
    
 }
