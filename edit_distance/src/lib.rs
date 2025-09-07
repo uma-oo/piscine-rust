@@ -5,8 +5,6 @@ pub fn edit_distance(source: &str, target: &str) -> usize {
     edit_distance_recursion(source, source.len(),target ,target.len())
 }
 
-
-
 fn edit_distance_recursion(source :&str , m :usize , target :&str , n:usize) -> usize{
     if m==0 {
         return n;
