@@ -1,9 +1,10 @@
 use capitalizing::*;
 
 fn main() {
-    println!("{}", capitalize_first(""));
-    println!("{}", title_case("jill is leaving A"));
-    println!("{}", change_case("heLLo THere"));
+    // println!("{}", capitalize_first(""));
+    // println!("{}", title_case("jill is leaving A"));
+    // println!("{}", change_case("heLLo THere"));
+    println!("{}",title_case("hello my\t\tname is carl"))
 }
 
 #[cfg(test)]
@@ -14,6 +15,7 @@ mod tests {
     fn test_capitalize_first() {
         assert_eq!(capitalize_first("hello"), "Hello");
         assert_eq!(capitalize_first("this is working"), "This is working");
+        
     }
 
     #[test]
