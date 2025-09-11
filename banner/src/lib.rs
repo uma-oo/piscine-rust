@@ -2,6 +2,9 @@ use std::{collections::HashMap, num::ParseFloatError};
 
 pub struct Flag {
     // expected public fields
+    pub short_hand: String,
+    pub long_hand: String,
+    pub desc: String,
 }
 
 impl<'a> Flag<'a> {
