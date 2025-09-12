@@ -1,16 +1,15 @@
-pub mod err;
-use err::{ParseErr, ReadErr};
+mod err;
+use err::*;
 use std::error::Error;
 use std::fs;
-use serde::Deserialize;
-#[derive(Debug,Eq, PartialEq, Deserialize)]
+#[derive(Eq, PartialEq, Debug)]
 pub struct Task {
     pub id: u32,
     pub description: String,
     pub level: u32,
 }
 
-#[derive(Debug,Eq, PartialEq, Deserialize)]
+#[derive(Eq, PartialEq, Debug)]
 pub struct TodoList {
     pub title: String,
     pub tasks: Vec<Task>,
@@ -36,9 +35,19 @@ impl TodoList {
             return Err(Box::new(ParseErr::Empty));
         }
 
-        let todo_list: TodoList =serde_json::from_str(&parsed.clone().to_string())?;
-        
+        let mut tasks: Vec<Task> = Vec::new();
 
-        Ok(todo_list)
+        for i in 0..parsed["tasks"].len() {
+            tasks.push(Task {
+                id: parsed["tasks"][i]["id"].to_string().parse().unwrap(),
+                description: parsed["tasks"][i]["description"].to_string(),
+                level: parsed["tasks"][i]["level"].to_string().parse().unwrap(),
+            });
+        }
+
+        Ok(Self {
+            title: parsed["title"].to_string(),
+            tasks: tasks,
+        })
     }
 }
