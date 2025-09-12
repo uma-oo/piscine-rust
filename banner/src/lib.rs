@@ -31,11 +31,11 @@ impl FlagsHandler {
     }
 
     pub fn exec_func(&self, input: &str, argv: &[&str]) -> Result<String, String> {
-        let sum :String = match self.flags[input](argv[0], argv[1]) {
+        let res :String = match self.flags[input](argv[0], argv[1]) {
             Ok(value)=> value,
             Err(err)=> return Err(err.to_string()),
         };
-        Ok(sum)
+        Ok(res)
     }
 }
 
@@ -54,7 +54,7 @@ pub fn div(a: &str, b: &str) -> Result<String, ParseFloatError> {
         }
     };
 
-    Ok((a + b).to_string())
+    Ok((a / b).to_string())
 }
 
 pub fn rem(a: &str, b: &str) -> Result<String, ParseFloatError> {
@@ -72,5 +72,5 @@ pub fn rem(a: &str, b: &str) -> Result<String, ParseFloatError> {
         }
     };
 
-    Ok((a - b).to_string())
+    Ok((a%b).to_string())
 }
