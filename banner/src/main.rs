@@ -13,6 +13,9 @@ fn main() {
         "remainder of the division between two values, formula (a % b)",
     );
 
+    println!("{:?}", d);
+    println!("{:?}", r);
+
     handler.add_flag(d, div);
     handler.add_flag(r, rem);
 
