@@ -66,17 +66,17 @@ impl Form {
 // this will be the structure that wil handle the errors
 #[derive(Debug, Eq, PartialEq)]
 pub struct FormError {
-    form_values: (String, String),
-    date: String,
-    err: String,
+    pub form_values: (&'static str, String),
+    pub date: String,
+    pub err: &'static str,
 }
 
 impl FormError {
     pub fn new(field_name: &'static str, field_value: String, err: &'static str) -> Self {
         Self {
-            form_values: (field_name.to_string(), field_value),
+            form_values: (field_name, field_value),
             date: Local::now().format("%Y-%m-%d %H:%M:%S").to_string(),
-            err: err.to_string(),
+            err: err,
         }
     }
 }
