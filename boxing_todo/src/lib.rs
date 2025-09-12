@@ -1,5 +1,5 @@
 mod err;
-use err::*;
+pub use err::{ParseErr, ReadErr};
 use std::error::Error;
 use std::fs;
 #[derive(Eq, PartialEq, Debug)]
