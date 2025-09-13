@@ -65,13 +65,12 @@ pub fn nbr_of_employees(mall: &Mall) -> usize {
 pub fn check_for_securities(mall: &mut Mall, mut guards: HashMap<String, Guard>) {
     let mut how_guards_should_be = 0.0;
     for (_, floor) in mall.floors.clone() {
-        how_guards_should_be = floor.size_limit as f64;
+        how_guards_should_be += floor.size_limit as f64;
     }
 
     how_guards_should_be = how_guards_should_be / 200.0;
-
     if (how_guards_should_be.ceil() as usize) > mall.guards.len() {
-        for mut _i in 0..=(how_guards_should_be.ceil() as usize) - mall.guards.len() {
+        for mut _i in 0..(how_guards_should_be.ceil() as usize) - mall.guards.len() {
             for (key, _) in &guards {
                 let (new_guard_name, new_guard) = guards.remove_entry(&key.clone()).unwrap();
                 mall.guards.insert(new_guard_name, new_guard);
