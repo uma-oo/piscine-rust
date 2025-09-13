@@ -73,10 +73,7 @@ pub fn check_for_securities(mall: &mut Mall, mut guards: HashMap<String, Guard>)
     if (how_guards_should_be.ceil() as usize) > mall.guards.len() {
         for mut _i in 0..=(how_guards_should_be.ceil() as usize) - mall.guards.len() {
             for (key, _) in &guards {
-
-                
                 let (new_guard_name, new_guard) = guards.remove_entry(&key.clone()).unwrap();
-                println!("{:?}", new_guard_name);
                 mall.guards.insert(new_guard_name, new_guard);
                 break;
             }
