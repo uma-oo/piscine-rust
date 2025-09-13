@@ -1,6 +1,9 @@
 use json;
 use json::object;
+
+
 #[derive(Debug)]
+
 pub struct Food {
     // expected public fields
     pub name: String,
