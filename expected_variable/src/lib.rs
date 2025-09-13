@@ -2,7 +2,6 @@ use convert_case::{ Case, Casing };
 
 pub fn expected_variable(compared: &str, expected: &str) -> Option<String> {
     if !compared.to_ascii_lowercase().is_case(Case::Snake) && !compared.is_case(Case::Camel) {
-        println!("hnaaa");
         return None;
     }
     let len = expected.chars().collect::<Vec<_>>().len() as f64;
@@ -13,7 +12,7 @@ pub fn expected_variable(compared: &str, expected: &str) -> Option<String> {
 
     let alikness = (len - distance) / len;
     if alikness > 0.5 {
-        return Some(format!("{}% close to it", (100.0 * alikness).round()));
+        return Some(format!("{}%", (100.0 * alikness).round()));
     }
     None
 }
