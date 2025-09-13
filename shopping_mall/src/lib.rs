@@ -1,11 +1,11 @@
 mod mall;
 
-pub use mall::{Mall, Store, Employee, Guard, Floor};
+pub use mall::{ Mall, Store, Employee, Guard, Floor };
 use std::collections::HashMap;
 //biggest_store: receives a Mall and returns the Store with the most square_meters.
 pub fn biggest_store(mall: &Mall) -> (String, Store) {
     let mut max_store: Option<Store> = None;
-    let mut name: String= String::new();
+    let mut name: String = String::new();
     for (_, floor) in mall.floors.clone() {
         for (key, store) in floor.stores {
             if max_store.is_none() {
@@ -65,13 +65,18 @@ pub fn nbr_of_employees(mall: &Mall) -> usize {
 pub fn check_for_securities(mall: &mut Mall, mut guards: HashMap<String, Guard>) {
     let mut how_guards_should_be = 0.0;
     for (_, floor) in mall.floors.clone() {
-        how_guards_should_be = (floor.size_limit as f64) / 200.0;
+        how_guards_should_be = floor.size_limit as f64;
     }
 
+    how_guards_should_be = how_guards_should_be / 200.0;
+
     if (how_guards_should_be.ceil() as usize) > mall.guards.len() {
-        for mut _i in 0..(how_guards_should_be.ceil() as usize) - mall.guards.len() {
+        for mut _i in 0..=(how_guards_should_be.ceil() as usize) - mall.guards.len() {
             for (key, _) in &guards {
+
+                
                 let (new_guard_name, new_guard) = guards.remove_entry(&key.clone()).unwrap();
+                println!("{:?}", new_guard_name);
                 mall.guards.insert(new_guard_name, new_guard);
                 break;
             }
@@ -92,8 +97,3 @@ pub fn cut_or_raise(mall: &mut Mall) {
         }
     }
 }
-
-
-
-
-
