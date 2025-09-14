@@ -1,32 +1,21 @@
 pub fn pig_latin(text: &str) -> String {
-    let mut result = String::new();
-
     let first = text.chars().nth(0).unwrap();
     let second = text.chars().nth(1).unwrap();
     let third = text.chars().nth(2).unwrap();
 
     if !is_vowel(first) {
-        println!("hnaaaaaaaaaaa");
         if (second == 'q' || second == 'q') && (third == 'u' || third == 'U') {
-            result.push_str(&text[3..]);
-            result.push(first);
-            result.push_str("qu");
-            result.push_str("ay");
-            return result;
+            return format!("{}{}{}{}", &text[3..], first, "qu", "ay");
         }
     }
 
     let index = find_first_vowel(text);
     if index != -1 {
-        let i  = index as usize;
-        result.push_str(&text[i..]);
-        result.push_str(&text[..i]);
-        result.push_str("ay");
-    } else {
-        result.push_str(&text[0..]);
-    }
+        let i = index as usize;
+        return format!("{}{}{}", &text[i..], &text[..i], "ay");
+    } 
 
-    result
+    format!("{}", text)
 }
 
 // aeiou
