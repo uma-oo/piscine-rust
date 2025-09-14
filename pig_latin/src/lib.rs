@@ -6,10 +6,11 @@ pub fn pig_latin(text: &str) -> String {
     let third = text.chars().nth(2).unwrap();
 
     if !is_vowel(first) {
+        println!("hnaaaaaaaaaaa");
         if (second == 'q' || second == 'q') && (third == 'u' || third == 'U') {
+            result.push_str(&text[3..]);
             result.push(first);
             result.push_str("qu");
-            result.push_str(&text[3..]);
             result.push_str("ay");
             return result;
         }
