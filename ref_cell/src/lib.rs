@@ -41,7 +41,7 @@ impl Tracker {
             .borrow_mut()
             .push(
                 format!(
-                    "This value would use {}% of your quota",
+                    "Info: This value would use {}% of your quota",
                     (Rc::strong_count(&value) * 100) / self.max
                 )
             );
