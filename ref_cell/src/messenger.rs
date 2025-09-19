@@ -1,11 +1,9 @@
-
-use std::rc::Rc;
 use std::cell::RefCell;
 
 
 #[derive(Debug)]
 pub struct Tracker {
     pub messages: RefCell<Vec<String>>,
-    value: RefCell<usize>,
-    max: usize,
+    pub value: RefCell<usize>,
+    pub max: usize,
 }

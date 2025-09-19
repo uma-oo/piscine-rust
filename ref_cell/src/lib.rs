@@ -1,16 +1,10 @@
 use std::rc::Rc;
 use std::cell::RefCell;
-use std::cell::Cell;
 
 mod messenger;
 pub use messenger::*;
 
-#[derive(Debug)]
-pub struct Tracker {
-    pub messages: RefCell<Vec<String>>,
-    value: RefCell<usize>,
-    max: usize,
-}
+
 
 impl Tracker {
     pub fn new(max: usize) -> Self {
