@@ -1,6 +1,6 @@
 use std::rc::Rc;
-use how_many_references::*;
 
+use how_many_references::*;
 
 #[test]
 fn test_add_element() {
@@ -47,9 +47,15 @@ fn test_rm_all_ref() {
     let c1 = Rc::new("c".to_owned());
     let d1 = Rc::new("d".to_owned());
 
-    let mut new_node = Node::new(
-        vec![d.clone(), d.clone(), b.clone(), a.clone(), c.clone(), a.clone(), d.clone()]
-    );
+    let mut new_node = Node::new(vec![
+        d.clone(),
+        d.clone(),
+        b.clone(),
+        a.clone(),
+        c.clone(),
+        a.clone(),
+        d.clone(),
+    ]);
 
     new_node.rm_all_ref(a1.clone());
     assert_eq!(how_many_references(&a), 3);

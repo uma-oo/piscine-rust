@@ -1,5 +1,5 @@
 use std::rc::Rc;
-
+use std::alloc::System;
 #[derive(Debug)]
 pub struct Node {
     pub ref_list: Vec<Rc<String>>,
@@ -19,8 +19,10 @@ impl Node {
         while i < self.ref_list.len() {
             if Rc::ptr_eq(&element, &self.ref_list[i]) {
                 self.ref_list.remove(i);
+                i = 0;
+            } else {
+                i += 1;
             }
-            i += 1;
         }
     }
 }
