@@ -38,7 +38,6 @@ impl<T: Sub<Output = T> + std::fmt::Debug + Copy> Sub for Matrix<T> {
             let mut columns = Vec::new();
             for j in 0..self.0[0].len() {
                 let result: T = self.0[i][j] - other.0[i][j];
-                println!("{:?}", result);
                 columns.push(result);
             }
             rows.push(columns);
