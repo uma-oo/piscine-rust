@@ -43,10 +43,8 @@ impl<'a> Vehicle for Car<'a> {
 
 pub fn all_models(list: Vec<&dyn Vehicle>) -> Vec<&str> {
     let mut vec_models = Vec::new();
-
     for item in list {
         vec_models.push(item.model());
     }
-
     vec_models
 }
