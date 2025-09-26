@@ -81,5 +81,5 @@ pub fn from_duration_to_ft(duration: &Duration) -> String {
     let minutes = (total_seconds % 3600) / 60;
     let seconds = total_seconds % 60;
 
-    format!("{:02}H:{:02}M:{:02}S", hours, minutes, seconds)
+    format!("{}H:{}M:{}S", hours, minutes, seconds)
 }
