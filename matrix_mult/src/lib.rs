@@ -1,10 +1,10 @@
-use lalgebra_scalar::*;
-use std::ops::Mul;
+use lalgebra_scalar::Scalar;
+use std::ops::{AddAssign , Mul};
 
 #[derive(Debug, PartialEq, Eq, Clone)]
 pub struct Matrix<T>(pub Vec<Vec<T>>);
 
-impl<T: Copy + Clone + Mul<Output=T> > Matrix<T> {
+impl<T: Scalar<Item=T> + Clone + Copy > Matrix<T> {
     pub fn number_of_cols(&self) -> usize {
         self.0[0].len()
     }
@@ -26,7 +26,7 @@ impl<T: Copy + Clone + Mul<Output=T> > Matrix<T> {
     }
 }
 
-impl<T: Clone + Copy + std::fmt::Debug + Mul<Output=T> + lalgebra_scalar::Scalar<Item=T> + std::ops::AddAssign > Mul for Matrix<T> {
+impl<T: Scalar<Item=T> + Clone + Copy + AddAssign> Mul for Matrix<T> {
     type Output = Option<Self>;
 
     fn mul(self, other: Self) -> Self::Output {
@@ -39,13 +39,11 @@ impl<T: Clone + Copy + std::fmt::Debug + Mul<Output=T> + lalgebra_scalar::Scalar
         for i in 0..self.number_of_rows() {
             let mut vect_rows = Vec::new();
             for j in 0..other.number_of_cols() {
-
                 let mut result = T::zero();
                 let row = self.row(i);
                 let column = other.col(j);
                 for k in 0..row.len() {
-
-                    result += row[k]*column[k];
+                    result += row[k] * column[k];
                 }
                 vect_rows.push(result);
             }
