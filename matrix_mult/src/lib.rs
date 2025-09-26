@@ -39,10 +39,12 @@ impl<T: Clone + Copy + std::fmt::Debug + Mul<Output=T> + lalgebra_scalar::Scalar
         for i in 0..self.number_of_rows() {
             let mut vect_rows = Vec::new();
             for j in 0..other.number_of_cols() {
+
                 let mut result = T::zero();
                 let row = self.row(i);
-                let column = other.col(i);
+                let column = other.col(j);
                 for k in 0..row.len() {
+
                     result += row[k]*column[k];
                 }
                 vect_rows.push(result);
