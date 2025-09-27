@@ -26,19 +26,37 @@ impl Cart {
             .position(|(product_name, _)| product_name.to_string() == ele)
             .unwrap();
         self.items.push(s.products[index as usize].clone());
+
+        self.generate_receipt();
     }
     pub fn generate_receipt(&mut self) -> Vec<f32> {
+        let mut prices: Vec<f32> = self.items
+        .iter()
+        .map(|&(_, price)| price)
+        .collect();
+        prices.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        let mut cheapests: Vec<f32> = prices[0..self.items.len()/3 as usize].to_vec();
+        self.receipt = Vec::new();
         let total_price: f32 = self.items
             .iter()
             .map(|&(_, price)| price)
             .sum();
-        let cheapest = self.items.iter().min_by(|a, b| a.partial_cmp(b).unwrap());
-        let price_after_discount = total_price - cheapest.unwrap().1;
+        // for _i in 0..self.items.len() / 3 {
+        //     let cheapest = prices.iter().min_by(|a, b| a.partial_cmp(b).unwrap());
+        //     cheapests.push(*cheapest.unwrap());
+        //     let index = cheapests
+        //         .iter()
+        //         .position(|x| *x == *cheapest.unwrap())
+        //         .unwrap();
+        //     prices.remove(index);
+        // }
+        let price_after_discount: f32 = total_price - cheapests.iter().sum::<f32>();
         let discount = 1.0 - price_after_discount / total_price;
+        println!("disc {:?}", discount);
         for (_, price) in self.items.iter() {
             self.receipt.push(((price - price * discount)*100.0).round()/100.0);
         }
-        self.receipt.sort_by(|a, b| a.partial_cmp(b).unwrap()); 
+        self.receipt.sort_by(|a, b| a.partial_cmp(b).unwrap());
         self.receipt.clone()
     }
 }
