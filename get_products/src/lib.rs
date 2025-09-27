@@ -6,11 +6,14 @@ pub fn get_products(arr: Vec<usize>) -> Vec<usize> {
             .filter(|&a| a != ele)
             .collect();
 
-        let mut product = 1;
-        for item in data {
-            product *= item;
+        let mut product = 1 as usize;
+        for item in &data {
+            product *= *item;
         }
-       
+
+        if data.is_empty() {
+            continue;
+        }
         vector.push(product);
     }
     vector
