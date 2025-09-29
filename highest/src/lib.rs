@@ -36,8 +36,8 @@ impl<'a> Numbers<'a> {
 
     pub fn highest_three(&self) -> Vec<u32> {
         let mut data: Vec<_> = self.numbers.iter().collect();
-        data.sort();
-        let mut result = Vec::new();
+        data.sort_by(|a, b| b.cmp(a));
+        let mut result= Vec::new();
         let mut i = 0;
         while i < 3 {
             result.push(*data[i]);
